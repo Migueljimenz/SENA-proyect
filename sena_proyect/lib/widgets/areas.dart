@@ -1,8 +1,7 @@
-// ignore_for_file: unused_element, avoid_print, prefer_const_constructors
+// ignore_for_file: unused_element, avoid_print, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:sena_proyect/models/modelAreas.dart';
-import 'package:http/http.dart' as http;
+import 'package:sena_proyect/models/getAreas.dart';
 
 class Areas extends StatefulWidget {
   @override
@@ -10,35 +9,23 @@ class Areas extends StatefulWidget {
 }
 
 class _AreasState extends State<Areas> {
-  Future<List<Area>> _getAreas() async {
-    final url = Uri.parse('https://aplicativo-sena.000webhostapp.com');
-    final response = await http.get(url);
-    /* print(response.body); */
-    /* List<Area> areas = []; */
-    if (response.statusCode == 200) {
-      return areaFromJson(response.body);
-    } else {
-      throw Exception('Failed to load area');
-    }
-  }
-
   @override
   initState() {
     super.initState();
-    _getAreas();
+    getAreas();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _getAreas(),
+        future: getAreas(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.count(
                 crossAxisCount: 2,
-                children: _listAreas(snapshot.data),
+                children: listAreas(snapshot.data),
               ),
             );
           } else if (snapshot.hasError) {
@@ -49,33 +36,42 @@ class _AreasState extends State<Areas> {
         });
   }
 
-  List<Widget> _listAreas(data) {
+  List<Widget> listAreas(data) {
     List<Widget> areas = [];
     for (var i = 0; i < data.length; i++) {
       areas.add(Column(
         children: [
           GestureDetector(
-            child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                )),
-                color: Colors.white,
-                width: 160,
-                height: 160,
-                child: Image.network(data[i].logo)),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    title: Center(child: Text(data[i].nombre)),
-                    backgroundColor: Colors.orange,
-                  ),
-                );
-              }));
-            },
-          ),
+              child: Column(
+                children: [
+                  Container(
+                      width: 160,
+                      height: 160,
+                      child: Image.network(data[i].logo)),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: Text(data[i].nombre),
+                    ),
+                    body: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 200),
+                            child: Text(
+                                'Se Supone que aqui van los programas, pero no carga nada jajajajajajajaj'),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }));
+              }),
         ],
       ));
     }
