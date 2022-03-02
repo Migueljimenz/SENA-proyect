@@ -2,6 +2,8 @@
 //
 //     final programa = programaFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<Programa> programaFromJson(String str) => List<Programa>.from(json.decode(str).map((x) => Programa.fromJson(x)));

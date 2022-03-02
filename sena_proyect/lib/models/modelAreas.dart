@@ -2,6 +2,8 @@
 //
 //     final area = areaFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<Area> areaFromJson(String str) => List<Area>.from(json.decode(str).map((x) => Area.fromJson(x)));
