@@ -2,6 +2,8 @@
 //
 //     final desPrograma = desProgramaFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<DesPrograma> desProgramaFromJson(String str) => List<DesPrograma>.from(json.decode(str).map((x) => DesPrograma.fromJson(x)));

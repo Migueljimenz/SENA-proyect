@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:sena_proyect/models/modelDesProgramas.dart';
 import 'package:sena_proyect/models/modelProgramas.dart';
 import 'package:sena_proyect/models/postDescPrograma.dart';
-import 'package:sena_proyect/widgets/descPrograma.dart';
 
 class Programas extends StatelessWidget {
   const Programas({
@@ -51,8 +50,8 @@ class Programas extends StatelessWidget {
                       return Scaffold(
                           appBar: AppBar(
                             backgroundColor: Colors.orange,
-                            title:
-                                Center(child: Text('Descripcion del programa')),
+                            title: const Center(
+                                child: Text('Descripcion del programa')),
                           ),
                           backgroundColor: Colors.white,
                           body: Column(
@@ -119,15 +118,12 @@ class Programas extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      title: Text(descripcion[index].descPrograma,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
+                  child: ListTile(
+                    title: Text(descripcion[index].descPrograma,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        )),
                   ),
                 ),
               );
