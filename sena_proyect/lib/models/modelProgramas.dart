@@ -1,33 +1,29 @@
 // To parse this JSON data, do
 //
-
-// ignore_for_file: file_names
 //     final programa = programaFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Programa> programaFromJson(String str) =>
-    List<Programa>.from(json.decode(str).map((x) => Programa.fromJson(x)));
+List<Programa> programaFromJson(String str) => List<Programa>.from(json.decode(str).map((x) => Programa.fromJson(x)));
 
-String programaToJson(List<Programa> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String programaToJson(List<Programa> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Programa {
-  Programa({
-    this.programa = "",
-    this.nombreArea = "", nombre_area,
-  });
+    Programa({
+        this.programa="",
+        this.nombreArea2="",
+    });
 
-  String programa;
-  String nombreArea;
+    String programa;
+    String nombreArea2;
 
-  factory Programa.fromJson(Map<String, dynamic> json) => Programa(
+    factory Programa.fromJson(Map<String, dynamic> json) => Programa(
         programa: json["programa"],
-        nombreArea: json["nombre_area"],
-      );
+        nombreArea2: json["nombreArea2"],
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "programa": programa,
-        "nombre_area": nombreArea,
-      };
+        "nombreArea2": nombreArea2,
+    };
 }

@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:sena_proyect/models/getAreas.dart';
+import 'package:sena_proyect/models/modelProgramas.dart';
+import 'package:sena_proyect/models/postProgramas.dart';
+import 'package:sena_proyect/widgets/vistaProgramas.dart';
 
 class Areas extends StatefulWidget {
   @override
@@ -50,27 +53,24 @@ class _AreasState extends State<Areas> {
                       child: Image.network(data[i].logo)),
                 ],
               ),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      title: Text(data[i].nombre),
-                    ),
-                    body: Column(
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 200),
-                            child: Text(
-                                'Se Supone que aqui van los programas, pero no carga nada jajajajajajajaj'),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                }));
+              onTap: () async {
+
+                List<Programa> pro;
+                Programa programa = Programa(nombreArea2: data[i].nombreArea);
+                pro = await PostProgramas(programa);
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    // ignore: duplicate_ignore
+                    return Scaffold(
+                      appBar: AppBar(
+                        backgroundColor: Colors.orange,
+                        title: Center(child: Text(data[i].nombreArea)),
+                      ),
+                      backgroundColor: Colors.transparent,
+                      body: Programas(pro: pro),
+                    );
+                  }),
+                );
               }),
         ],
       ));
@@ -78,3 +78,4 @@ class _AreasState extends State<Areas> {
     return areas;
   }
 }
+

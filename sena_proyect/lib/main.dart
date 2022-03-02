@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.orange,
         title: Center(
-            child: Text('PROGRAMAS SENA',
+            child: Text('PROGRAMAS',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -35,10 +35,7 @@ class HomePage extends StatelessWidget {
                 ))),
       ),
       body: Stack(
-        children: [
-          Background(),
-          Areas()
-        ],
+        children: [Background(), Areas()],
       ),
     );
   }
