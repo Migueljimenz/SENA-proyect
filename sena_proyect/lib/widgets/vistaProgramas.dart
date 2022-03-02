@@ -60,7 +60,7 @@ class Programas extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(20.0),
                                 child: Container(
-                                  height: 200,
+                                  height: 100,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.white,
@@ -100,35 +100,41 @@ class Programas extends StatelessWidget {
   }
 
   descProgramas({required List<DesPrograma> descripcion}) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: descripcion.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-              border: Border.all(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
-            child: ListTile(
-              title: Center(
-                child: Text(descripcion[index].descPrograma,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
-              onTap: () {},
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: descripcion.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(descripcion[index].descPrograma,
+                          style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
